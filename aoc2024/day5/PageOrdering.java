@@ -73,18 +73,20 @@ public class PageOrdering {
 
     // check if correctly ordered
     private static boolean isCorrectlyOrdered(List<Integer> pages, Map<Integer, Set<Integer>> precedence) {
-        Set<Integer> pagesInUpdate = new HashSet<>(pages);
+        Map<Integer, Integer> position = new HashMap<>();
+        for(int i = 0; i < pages.size(); i++) {
+            position.put(pages.get(i), i);
+        }
 
-        for (int i = 0; i < pages.size(); i++) {
-            for (int j = i + 1; j < pages.size(); j++) {
-                int before = pages.get(i);
-                int after = pages.get(j);
-
-                if(precedence.containsKey(before) && precedence.get(before).contains(after) && !pagesInUpdate.contains(after)) {
+        for(Map.Entry<Integer, Set<Integer>> entry : precedence.entrySet()) {
+            int before = entry.getKey();
+            for(int after: entry.getValue()) {
+                if(position.containsKey(before) && position.containsKey(after) && position.get(before) > position.get(after)) {
                     return false;
                 }
             }
         }
+
         return true;
     }
 }
