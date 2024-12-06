@@ -35,12 +35,15 @@ public class PageOrdering {
 
             br.close();
             // process them + print out the result
+            int result = calculateMiddlePageSum(rules, updates);
+            System.out.println("Sum pf ");
+
         } catch (IOException e) {
             System.err.println("Error reading file" + e.getMessage());
         }
     }
 
-    // calculate sum of middle pages
+    // calculate sum of middle page numbers
     private static int calculateMiddlePageSum(List<String> rules, List<String> updates) {
         Map<Integer, Set<Integer>> precedence = new HashMap<>();
         for (String rule : rules) {
