@@ -36,7 +36,7 @@ public class PageOrdering {
             br.close();
             // process them + print out the result
             int result = calculateMiddlePageSum(rules, updates);
-            System.out.println("Sum pf ");
+            System.out.println("Sum of middle page numbers: " + result);
 
         } catch (IOException e) {
             System.err.println("Error reading file" + e.getMessage());
