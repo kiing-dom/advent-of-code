@@ -81,7 +81,7 @@ public class GuardPatrol {
         int x = startX, y = startY;
         while (true) {
             int nextX = x + DIRECTIONS[direction][0];
-            int nextY = x + DIRECTIONS[direction][1];
+            int nextY = y + DIRECTIONS[direction][1];
 
             if(nextX < 0 || nextX >= rows || nextY < 0 || nextY >= cols) {
                 break;
