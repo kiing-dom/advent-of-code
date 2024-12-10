@@ -8,16 +8,7 @@ import java.util.*;
 public class HistorianHysteria {
 
     public int findTotalDistance(List<Integer> list1, List<Integer> list2) {
-        Collections.sort(list1, (a, b) -> a - b);
-        Collections.sort(list2, (a, b) -> a - b);
-
-
-        int totalDistance = 0;
-        for(int i = 0; i < list1.size(); i++) {
-            totalDistance += list2.get(i) - list1.get(i);
-        }
-
-        return totalDistance;
+        
     }
 
 
