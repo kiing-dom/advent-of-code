@@ -36,10 +36,13 @@ public class BridgeRepair {
     }
 
     private static boolean canAchieveTarget(int[] numbers, long targetValue) {
+        if(numbers.length == 1) {
+            return numbers[0] == targetValue;
+        }
         return evaluate(numbers, 0, numbers[0], targetValue);
     }
 
-    private static boolean evaluate(int[] numbers, int index, int currentValue, long targetValue) {
+    private static boolean evaluate(int[] numbers, int index, long currentValue, long targetValue) {
         if(index == numbers.length - 1) {
             return currentValue == targetValue;
         }
