@@ -29,5 +29,17 @@ public class BridgeRepair {
         }
     }
 
-    
+    private static boolean canAchieveTarget(int[] numbers, int targetValue) {
+        return evaluate(numbers, 0, numbers[0], targetValue);
+    }
+
+    private static boolean evaluate(int[] numbers, int index, int currentValue, int targetValue) {
+        if(index == numbers.length - 1) {
+            return currentValue == targetValue;
+        }
+
+        int nextNumber = numbers[index + 1];
+        return evaluate(numbers, index + 1, currentValue + nextNumber, targetValue) ||
+            evaluate(numbers, index + 1, currentValue * nextNumber, targetValue);
+    }
 }
