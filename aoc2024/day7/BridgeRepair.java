@@ -15,25 +15,31 @@ public class BridgeRepair {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             String line;
-            int totalCalibration = 0;
+            long totalCalibration = 0;
 
             while((line = br.readLine()) != null && !line.isEmpty()) {
                 String[] parts = line.split(":");
-                int targetValue = Integer.parseInt(parts[0].trim());
+                long targetValue = Long.parseLong(parts[0].trim());
                 String[] numStrings = parts[1].trim().split(" ");
                 int[] nums = Arrays.stream(numStrings).mapToInt(Integer::parseInt).toArray();
+
+                if(canAchieveTarget(nums, targetValue)) {
+                    totalCalibration += targetValue;
+                }
             }
+            br.close();
+            System.out.println("total calibration value: " + totalCalibration);
         } 
         catch (IOException e) {
             System.err.println("Could not read file: " + e.getMessage());
         }
     }
 
-    private static boolean canAchieveTarget(int[] numbers, int targetValue) {
+    private static boolean canAchieveTarget(int[] numbers, long targetValue) {
         return evaluate(numbers, 0, numbers[0], targetValue);
     }
 
-    private static boolean evaluate(int[] numbers, int index, int currentValue, int targetValue) {
+    private static boolean evaluate(int[] numbers, int index, int currentValue, long targetValue) {
         if(index == numbers.length - 1) {
             return currentValue == targetValue;
         }
